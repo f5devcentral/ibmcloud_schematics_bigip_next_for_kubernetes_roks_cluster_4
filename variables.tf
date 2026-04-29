@@ -118,3 +118,4 @@ variable "roks_transit_gateway_name" {
   type        = string
   default     = "tf-tgw"
 }
+
