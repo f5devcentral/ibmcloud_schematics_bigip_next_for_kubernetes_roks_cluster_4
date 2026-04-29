@@ -66,6 +66,32 @@ KEY_OUTPUTS = [
     "roks_transit_gateway_name",
 ]
 
+# Declared in the Schematics workspace template so outputs appear in the UI.
+WORKSPACE_OUTPUTS = [
+    {"name": "openshift_cluster_id",           "type": "string"},
+    {"name": "openshift_cluster_name",         "type": "string"},
+    {"name": "openshift_cluster_public_endpoint",  "type": "string"},
+    {"name": "openshift_cluster_private_endpoint", "type": "string"},
+    {"name": "openshift_cluster_ingress_hostname", "type": "string"},
+    {"name": "openshift_cluster_state",        "type": "string"},
+    {"name": "openshift_cluster_crn",          "type": "string"},
+    {"name": "openshift_version_used",         "type": "string"},
+    {"name": "available_openshift_versions",   "type": "string"},
+    {"name": "openshift_worker_zone1_ip",      "type": "string"},
+    {"name": "openshift_worker_zone2_ip",      "type": "string"},
+    {"name": "openshift_worker_zone3_ip",      "type": "string"},
+    {"name": "roks_cluster_id",                "type": "string"},
+    {"name": "roks_cluster_name",              "type": "string"},
+    {"name": "roks_cluster_vpc_id",            "type": "string"},
+    {"name": "roks_cluster_vpc_name",          "type": "string"},
+    {"name": "roks_cluster_vpc_crn",           "type": "string"},
+    {"name": "roks_transit_gateway_id",        "type": "string"},
+    {"name": "roks_transit_gateway_name",      "type": "string"},
+    {"name": "roks_transit_gateway_crn",       "type": "string"},
+    {"name": "roks_transit_gateway_location",  "type": "string"},
+    {"name": "roks_transit_gateway_global_routing", "type": "string"},
+]
+
 
 # ── Low-level helpers ─────────────────────────────────────────────────────────
 
@@ -150,6 +176,7 @@ def build_workspace_json(variables, ts_label, branch="main"):
             "folder": ".",
             "type": "terraform_v1.5",
             "variablestore": variables,
+            "output_values": WORKSPACE_OUTPUTS,
         }],
     }
     Path(WS_JSON_PATH).write_text(json.dumps(ws, indent=2))
